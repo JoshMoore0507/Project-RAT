@@ -1,0 +1,56 @@
+# Visual Studio workspace and user settings
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# .NET build and test output
+[Bb]in/
+[Oo]bj/
+[Dd]ebug*/
+[Rr]elease*/
+[Aa]rtifacts/
+[Tt]est[Rr]esult*/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+
+# NuGet and local package state
+packages/
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+
+# ReSharper, Rider, and other IDE state
+_ReSharper*/
+*.DotSettings.user
+.idea/
+*.sln.iml
+
+# Coverage and profiling output
+coverage/
+*.coverage
+*.coveragexml
+*.opencover.xml
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local-only Revit deployment/configuration overrides
+*.addin.local
+*.local.addin
+
+# Temporary and backup files
+*.tmp
+*.temp
+*.bak
+*.orig
+~$*
+

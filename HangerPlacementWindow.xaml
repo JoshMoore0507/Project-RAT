@@ -1,0 +1,443 @@
+<Window x:Class="TPMechanical.QAQC.HangerPlacementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TP Mechanical | Hanger Placement"
+        Width="1260"
+        Height="780"
+        MinWidth="1040"
+        MinHeight="660"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        ResizeMode="CanResizeWithGrip"
+        Background="#F3F5F7"
+        FontFamily="Segoe UI"
+        FontSize="13">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="TpBlueBrush" Color="#123B5D" />
+        <SolidColorBrush x:Key="TpAccentBrush" Color="#F28C28" />
+        <SolidColorBrush x:Key="BorderBrush" Color="#D3D9DF" />
+        <SolidColorBrush x:Key="MutedTextBrush" Color="#5E6A73" />
+
+        <Style TargetType="GroupBox">
+            <Setter Property="Margin" Value="0,0,0,14" />
+            <Setter Property="Padding" Value="14" />
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" FontWeight="SemiBold" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Padding" Value="7,4" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Padding" Value="6,3" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+
+        <Style TargetType="CheckBox">
+            <Setter Property="Margin" Value="0,4" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+            <Setter Property="MinWidth" Value="90" />
+            <Setter Property="Height" Value="32" />
+            <Setter Property="Margin" Value="8,0,0,0" />
+            <Setter Property="Padding" Value="14,4" />
+        </Style>
+
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="MinWidth" Value="170" />
+            <Setter Property="Height" Value="34" />
+            <Setter Property="Padding" Value="18,5" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="{StaticResource TpBlueBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource TpBlueBrush}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+
+        <Style x:Key="PlannedFeatureBoxStyle" TargetType="Border">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="MaxWidth" Value="620" />
+            <Setter Property="Padding" Value="30" />
+            <Setter Property="CornerRadius" Value="7" />
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Background" Value="#F8FAFB" />
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="92" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="66" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="{StaticResource TpBlueBrush}">
+            <Grid Margin="24,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="TP MECHANICAL"
+                               Foreground="#BFD4E5"
+                               FontSize="12"
+                               FontWeight="SemiBold" />
+                    <TextBlock Text="Hanger Placement"
+                               Margin="0,2,0,0"
+                               Foreground="White"
+                               FontSize="25"
+                               FontWeight="SemiBold" />
+                    <TextBlock Text="Rule-driven placement for selected straight, horizontal fabrication segments."
+                               Margin="0,4,0,0"
+                               Foreground="#DCE8F1" />
+                </StackPanel>
+
+                <Border Grid.Column="1"
+                        VerticalAlignment="Center"
+                        Padding="11,6"
+                        CornerRadius="4"
+                        Background="#244F70">
+                    <TextBlock Text="ITM STRAIGHT MVP"
+                               Foreground="White"
+                               FontSize="11"
+                               FontWeight="SemiBold" />
+                </Border>
+            </Grid>
+        </Border>
+
+        <TabControl Grid.Row="1" Margin="18,16,18,0" Background="White">
+            <TabItem Header="Hanger Configuration">
+                <Grid Margin="18">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="340" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Placement profile"
+                                   Margin="0,0,10,0"
+                                   VerticalAlignment="Center"
+                                   FontWeight="SemiBold" />
+                        <TextBox x:Name="ProfileNameTextBox"
+                                 Grid.Column="1"
+                                 Text="TP Standard" />
+
+                        <StackPanel Grid.Column="3" Orientation="Horizontal">
+                            <Button Content="Add Rule"
+                                    Click="AddRuleButton_Click"
+                                    Style="{StaticResource SecondaryButtonStyle}" />
+                            <Button Content="Duplicate"
+                                    Click="DuplicateRuleButton_Click"
+                                    Style="{StaticResource SecondaryButtonStyle}" />
+                            <Button Content="Remove"
+                                    Click="RemoveRuleButton_Click"
+                                    Style="{StaticResource SecondaryButtonStyle}" />
+                        </StackPanel>
+                    </Grid>
+
+                    <GroupBox Grid.Row="1"
+                              Header="Ordered parameter-driven hanger rules"
+                              Margin="0,16,0,12">
+                        <DataGrid x:Name="RulesGrid"
+                                  ItemsSource="{Binding Rules}"
+                                  AutoGenerateColumns="False"
+                                  CanUserAddRows="False"
+                                  CanUserDeleteRows="False"
+                                  CanUserReorderColumns="True"
+                                  SelectionMode="Single"
+                                  SelectionUnit="FullRow"
+                                  HeadersVisibility="Column"
+                                  GridLinesVisibility="Horizontal"
+                                  HorizontalScrollBarVisibility="Auto"
+                                  VerticalScrollBarVisibility="Auto"
+                                  BorderThickness="0">
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Header="On"
+                                                        Width="42"
+                                                        Binding="{Binding Enabled, UpdateSourceTrigger=PropertyChanged}" />
+                                <DataGridTextColumn Header="Priority"
+                                                    Width="65"
+                                                    Binding="{Binding Priority, UpdateSourceTrigger=PropertyChanged}" />
+                                <DataGridTextColumn Header="Rule Name"
+                                                    Width="175"
+                                                    Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+
+                                <DataGridTemplateColumn Header="Size By" Width="125">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox ItemsSource="{Binding DataContext.SizeBasisOptions, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                      SelectedItem="{Binding SizeBasis, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Service" Width="155">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox ItemsSource="{Binding DataContext.Services, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                      DisplayMemberPath="DisplayName"
+                                                      SelectedValuePath="Key"
+                                                      SelectedValue="{Binding ServiceKey, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Material" Width="145">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox ItemsSource="{Binding DataContext.Materials, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                      DisplayMemberPath="DisplayName"
+                                                      SelectedValuePath="Key"
+                                                      SelectedValue="{Binding MaterialKey, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTextColumn Header="Min Size"
+                                                    Width="80"
+                                                    Binding="{Binding MinimumSize, UpdateSourceTrigger=PropertyChanged}" />
+                                <DataGridTextColumn Header="Max Size"
+                                                    Width="85"
+                                                    Binding="{Binding MaximumSize, UpdateSourceTrigger=PropertyChanged}" />
+                                <DataGridTextColumn Header="Max Spacing"
+                                                    Width="95"
+                                                    Binding="{Binding MaximumSpacing, UpdateSourceTrigger=PropertyChanged}" />
+                                <DataGridTextColumn Header="From End"
+                                                    Width="85"
+                                                    Binding="{Binding FromEnd, UpdateSourceTrigger=PropertyChanged}" />
+                                <DataGridTextColumn Header="From Joint"
+                                                    Width="90"
+                                                    Binding="{Binding FromJoint, UpdateSourceTrigger=PropertyChanged}" />
+                                <DataGridTextColumn Header="Branch/Tap"
+                                                    Width="90"
+                                                    Binding="{Binding FromBranchTap, UpdateSourceTrigger=PropertyChanged}" />
+
+                                <DataGridTemplateColumn Header="Standard ITM Hanger" Width="250">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox ItemsSource="{Binding DataContext.StandardHangerOptions, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                      DisplayMemberPath="DisplayName"
+                                                      SelectedValuePath="Key"
+                                                      SelectedValue="{Binding StandardHangerKey, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Insulated ITM Hanger" Width="250">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox ItemsSource="{Binding DataContext.InsulatedHangerOptions, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                      DisplayMemberPath="DisplayName"
+                                                      SelectedValuePath="Key"
+                                                      SelectedValue="{Binding InsulatedHangerKey, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+
+                    <TextBlock Grid.Row="2"
+                               Foreground="{StaticResource MutedTextBrush}"
+                               TextWrapping="Wrap">
+                        Rules are evaluated from the lowest priority number upward. Equal-priority matches are blocked and reported. Lengths use the active Revit project's unit format.
+                    </TextBlock>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Hanger Options">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid Margin="18">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="18" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel>
+                            <GroupBox Header="Collision adjustment — planned phase" IsEnabled="False">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="165" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <CheckBox Grid.ColumnSpan="2" Content="Enable collision adjustment" />
+                                    <TextBlock Grid.Row="1" Text="Movement interval" VerticalAlignment="Center" />
+                                    <TextBox Grid.Row="1" Grid.Column="1" Margin="0,5" Text="4&quot;" />
+                                    <TextBlock Grid.Row="2" Text="Tolerance" VerticalAlignment="Center" />
+                                    <TextBox Grid.Row="2" Grid.Column="1" Margin="0,5" Text="2&quot;" />
+                                    <TextBlock Grid.Row="3" Text="Maximum movement" VerticalAlignment="Center" />
+                                    <TextBox Grid.Row="3" Grid.Column="1" Margin="0,5" Text="4'-0&quot;" />
+                                    <CheckBox Grid.Row="4" Grid.ColumnSpan="2" Content="Highlight immovable hangers" />
+                                </Grid>
+                            </GroupBox>
+
+                            <GroupBox Header="Current engine scope">
+                                <StackPanel>
+                                    <TextBlock Text="Supported now" FontWeight="SemiBold" />
+                                    <TextBlock Margin="0,7,0,0" Text="• Manually selected fabrication segments" />
+                                    <TextBlock Text="• Straight and horizontal hosts only" />
+                                    <TextBlock Text="• Service, material, size, and insulation rules" />
+                                    <TextBlock Text="• End, joint, and branch/tap offsets" />
+                                    <TextBlock Text="• One Revit Undo item per placement batch" />
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                            <GroupBox Header="Structure attachment">
+                                <StackPanel>
+                                    <CheckBox x:Name="AttachToStructureCheckBox"
+                                              Content="Ask Revit to attach rods to nearest structure"
+                                              IsChecked="True" />
+                                    <CheckBox Content="Evaluate only a selected linked model"
+                                              IsEnabled="False"
+                                              ToolTip="Explicit linked-model selection is planned for a later phase." />
+                                    <TextBlock Margin="0,10,0,0"
+                                               Foreground="{StaticResource MutedTextBrush}"
+                                               TextWrapping="Wrap"
+                                               Text="Revit may leave a rod unattached when no compatible structure is found. The placement report identifies those hangers." />
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Header="Duplicate protection">
+                                <StackPanel>
+                                    <CheckBox x:Name="SkipExistingHangersCheckBox"
+                                              Content="Skip existing hanger positions on the same host"
+                                              IsChecked="True" />
+                                    <TextBlock Margin="0,10,0,0"
+                                               Foreground="{StaticResource MutedTextBrush}"
+                                               TextWrapping="Wrap"
+                                               Text="Keep this enabled for normal use so running the command twice does not stack duplicate hangers." />
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Header="Not included in this release">
+                                <StackPanel>
+                                    <TextBlock Text="• Automatic connected-run traversal" />
+                                    <TextBlock Text="• Collision relocation and clash highlighting" />
+                                    <TextBlock Text="• Multi-service trapeze placement" />
+                                    <TextBlock Text="• Automatic layout points" />
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="Point Configuration">
+                <Grid Margin="18">
+                    <Border Style="{StaticResource PlannedFeatureBoxStyle}">
+                        <StackPanel>
+                            <TextBlock Text="Automatic Point Placement"
+                                       HorizontalAlignment="Center"
+                                       FontSize="21"
+                                       FontWeight="SemiBold"
+                                       Foreground="#34434E" />
+                            <TextBlock Margin="0,10,0,0"
+                                       TextAlignment="Center"
+                                       Foreground="{StaticResource MutedTextBrush}"
+                                       TextWrapping="Wrap"
+                                       Text="This tab is reserved for choosing the TP layout-point family, type, numbering rules, and parameter mappings. It is intentionally disabled until hanger placement is validated." />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Point Options">
+                <Grid Margin="18">
+                    <Border Style="{StaticResource PlannedFeatureBoxStyle}">
+                        <StackPanel>
+                            <TextBlock Text="Point Location and Duplicate Rules"
+                                       HorizontalAlignment="Center"
+                                       FontSize="21"
+                                       FontWeight="SemiBold"
+                                       Foreground="#34434E" />
+                            <TextBlock Margin="0,10,0,0"
+                                       TextAlignment="Center"
+                                       Foreground="{StaticResource MutedTextBrush}"
+                                       TextWrapping="Wrap"
+                                       Text="Centerline, rod-attachment, offsets, duplicate handling, and source-element tracking will be added after the ITM hanger engine passes TP model testing." />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <Border Grid.Row="2"
+                Background="White"
+                BorderBrush="{StaticResource BorderBrush}"
+                BorderThickness="0,1,0,0">
+            <Grid Margin="18,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Width="9"
+                            Height="9"
+                            Margin="0,0,8,0"
+                            CornerRadius="5"
+                            Background="{StaticResource TpAccentBrush}" />
+                    <TextBlock x:Name="StatusTextBlock"
+                               VerticalAlignment="Center"
+                               Foreground="{StaticResource MutedTextBrush}"
+                               Text="Reading the active model's fabrication configuration…" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button x:Name="SaveSettingsButton"
+                            Content="Save Settings"
+                            Click="SaveSettingsButton_Click"
+                            Style="{StaticResource SecondaryButtonStyle}" />
+                    <Button Content="Close"
+                            Click="CloseButton_Click"
+                            IsCancel="True"
+                            Style="{StaticResource SecondaryButtonStyle}" />
+                    <Button x:Name="PlaceHangersButton"
+                            Content="Choose Parts &amp; Place"
+                            Margin="10,0,0,0"
+                            IsDefault="True"
+                            IsEnabled="False"
+                            Click="PlaceHangersButton_Click"
+                            ToolTip="Validate the profile, then select fabrication segments in Revit."
+                            Style="{StaticResource PrimaryButtonStyle}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
