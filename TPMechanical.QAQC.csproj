@@ -1,27 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <UseWPF>true</UseWPF>
-    <PlatformTarget>x64</PlatformTarget>
-    <!-- Keep the existing .addin registration valid while targeting Windows/WPF. -->
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <OutputPath>bin\$(Configuration)\net8.0\</OutputPath>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<PlatformTarget>x64</PlatformTarget>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\HangerPlacement32.png" />
+	</ItemGroup>
 
   <ItemGroup>
     <Reference Include="RevitAPI">
-      <HintPath Condition="'$(RevitApiDirectory)' == ''">..\..\..\..\..\..\Program Files\Autodesk\Revit 2026\RevitAPI.dll</HintPath>
-      <HintPath Condition="'$(RevitApiDirectory)' != ''">$(RevitApiDirectory)\RevitAPI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2026\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI">
-      <HintPath Condition="'$(RevitApiDirectory)' == ''">..\..\..\..\..\..\Program Files\Autodesk\Revit 2026\RevitAPIUI.dll</HintPath>
-      <HintPath Condition="'$(RevitApiDirectory)' != ''">$(RevitApiDirectory)\RevitAPIUI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2026\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\HangerPlacement32.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

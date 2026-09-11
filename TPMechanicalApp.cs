@@ -1,11 +1,14 @@
 ﻿using Autodesk.Revit.UI;
+using System;
 using System.Reflection;
+using System.Windows.Media.Imaging;
 
 namespace TPMechanical.QAQC
 {
     public class TPMechanicalApp : IExternalApplication
     {
-        public Result OnStartup(UIControlledApplication application)
+        public Result OnStartup(
+            UIControlledApplication application)
         {
             string tabName = "TP Mechanical";
 
@@ -15,56 +18,136 @@ namespace TPMechanical.QAQC
             }
             catch
             {
-                // The tab may already exist.
+                // TP Mechanical tab already exists.
             }
-
-            RibbonPanel panel =
-                application.CreateRibbonPanel(tabName, "QA/QC");
 
             string assemblyPath =
                 Assembly.GetExecutingAssembly().Location;
 
-            PushButtonData buttonData = new PushButtonData(
-                "TP_QAQC",
-                "Drawing\nQA/QC",
-                assemblyPath,
-                "TPMechanical.QAQC.QAQCCommand");
 
-            PushButton? button =
-                panel.AddItem(buttonData) as PushButton;
+            // ========================================
+            // QA/QC PANEL
+            // ========================================
 
-            if (button != null)
+            RibbonPanel qaPanel =
+                application.CreateRibbonPanel(
+                    tabName,
+                    "QA/QC");
+
+            PushButtonData qaButtonData =
+                new PushButtonData(
+                    "TP_QAQC",
+                    "Drawing\nQA/QC",
+                    assemblyPath,
+                    "TPMechanical.QAQC.QAQCCommand");
+
+            PushButton qaButton =
+                qaPanel.AddItem(qaButtonData)
+                as PushButton;
+
+            if (qaButton != null)
             {
-                button.ToolTip =
+                qaButton.ToolTip =
                     "Run TP Mechanical drawing QA/QC checks.";
             }
 
+
+            // ========================================
+            // SUPPORTS PANEL
+            // ========================================
+
             RibbonPanel supportsPanel =
-                application.CreateRibbonPanel(tabName, "Supports");
+                application.CreateRibbonPanel(
+                    tabName,
+                    "Supports");
 
-            PushButtonData hangerButtonData = new PushButtonData(
-                "TP_HangerPlacement",
-                "Hanger\nPlacement",
-                assemblyPath,
-                "TPMechanical.QAQC.HangerPlacementCommand");
+            PushButtonData hangerButtonData =
+                new PushButtonData(
+                    "TP_HangerPlacement",
+                    "Hanger\nPlacement",
+                    assemblyPath,
+                    "TPMechanical.QAQC.HangerPlacementCommand");
 
-            PushButton? hangerButton =
-                supportsPanel.AddItem(hangerButtonData) as PushButton;
+            PushButton hangerButton =
+                supportsPanel.AddItem(hangerButtonData)
+                as PushButton;
 
             if (hangerButton != null)
             {
+                // Small description shown when hovering.
                 hangerButton.ToolTip =
-                    "Configure rules and place ITM hangers on selected fabrication segments.";
+                    "Automatically configure and place hangers using TP Mechanical standards.";
 
+                // Expanded description shown after hovering.
                 hangerButton.LongDescription =
-                    "Rule-driven placement for selected straight, horizontal fabrication segments. " +
-                    "Collision relocation, full-run traversal, trapezes, and layout points are planned for later phases.";
+                    "TP Mechanical Hanger Placement automates hanger layout for fabrication pipe and duct. " +
+                    "It uses TP Mechanical rules for service, material, size, spacing, end offsets, " +
+                    "hanger type, collision adjustment, structural attachment, and layout point creation.";
+
+                // Load hanger icon.
+                BitmapImage? hangerIcon =
+                    LoadRibbonImage(
+                        "Resources/HangerPlacement32.png");
+
+                if (hangerIcon != null)
+                {
+                    hangerButton.LargeImage =
+                        hangerIcon;
+                }
             }
+
 
             return Result.Succeeded;
         }
 
-        public Result OnShutdown(UIControlledApplication application)
+
+        // ========================================
+        // IMAGE LOADER
+        // ========================================
+
+        private static BitmapImage? LoadRibbonImage(
+            string resourcePath)
+        {
+            try
+            {
+                string assemblyName =
+                    Assembly.GetExecutingAssembly()
+                        .GetName()
+                        .Name!;
+
+                Uri uri =
+                    new Uri(
+                        $"pack://application:,,,/{assemblyName};component/{resourcePath}",
+                        UriKind.Absolute);
+
+                BitmapImage image =
+                    new BitmapImage();
+
+                image.BeginInit();
+                image.UriSource = uri;
+                image.CacheOption =
+                    BitmapCacheOption.OnLoad;
+                image.EndInit();
+
+                image.Freeze();
+
+                return image;
+            }
+            catch
+            {
+                // If the image cannot be found,
+                // still allow the TP Mechanical add-in to load.
+                return null;
+            }
+        }
+
+
+        // ========================================
+        // SHUTDOWN
+        // ========================================
+
+        public Result OnShutdown(
+            UIControlledApplication application)
         {
             return Result.Succeeded;
         }
