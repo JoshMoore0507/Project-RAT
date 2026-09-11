@@ -1,4 +1,4 @@
-﻿<Window x:Class="TPMechanical.QAQC.HangerPlacementWindow"
+﻿<Window x:Class="TPMechanical.HangerPlacement.Views.HangerPlacementWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="TP Mechanical - Hanger Placement"

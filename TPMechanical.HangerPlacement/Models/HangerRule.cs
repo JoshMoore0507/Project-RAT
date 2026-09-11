@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TPMechanical.QAQC
+namespace TPMechanical.HangerPlacement.Models
 {
     public class HangerRule
     {

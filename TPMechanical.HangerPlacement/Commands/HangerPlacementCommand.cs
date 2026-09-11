@@ -2,8 +2,9 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using System.Windows.Interop;
+using TPMechanical.HangerPlacement.Views;
 
-namespace TPMechanical.QAQC
+namespace TPMechanical.HangerPlacement.Commands
 {
     [Transaction(TransactionMode.Manual)]
     public class HangerPlacementCommand : IExternalCommand

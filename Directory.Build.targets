@@ -1,0 +1,19 @@
+<Project>
+  <Target Name="VerifyRevit2026Api" BeforeTargets="ResolveReferences" Condition="'$(UseRevitApi)' == 'true'">
+    <Error Condition="!Exists('$(RevitApiDirectory)\RevitAPI.dll')"
+           Text="Revit 2026 API was not found at '$(RevitApiDirectory)'. Set RevitApiDirectory to the Revit 2026 installation folder." />
+    <Error Condition="!Exists('$(RevitApiDirectory)\RevitAPIUI.dll')"
+           Text="Revit 2026 UI API was not found at '$(RevitApiDirectory)'. Set RevitApiDirectory to the Revit 2026 installation folder." />
+  </Target>
+
+  <ItemGroup Condition="'$(UseRevitApi)' == 'true'">
+    <Reference Include="RevitAPI">
+      <HintPath>$(RevitApiDirectory)\RevitAPI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>$(RevitApiDirectory)\RevitAPIUI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

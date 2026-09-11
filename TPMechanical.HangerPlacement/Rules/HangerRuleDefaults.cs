@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Collections.Generic;
+using TPMechanical.HangerPlacement.Models;
 
-namespace TPMechanical.QAQC
+namespace TPMechanical.HangerPlacement.Rules
 {
     public static class HangerRuleDefaults
     {

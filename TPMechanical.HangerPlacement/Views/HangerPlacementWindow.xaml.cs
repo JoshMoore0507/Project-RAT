@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using TPMechanical.HangerPlacement.Models;
+using TPMechanical.HangerPlacement.Rules;
 
-namespace TPMechanical.QAQC
+namespace TPMechanical.HangerPlacement.Views
 {
     public partial class HangerPlacementWindow : Window
     {

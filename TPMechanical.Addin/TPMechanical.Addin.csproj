@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <UseWPF>true</UseWPF>
+    <UseRevitApi>true</UseRevitApi>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TPMechanical.HangerPlacement\TPMechanical.HangerPlacement.csproj" />
+    <ProjectReference Include="..\TPMechanical.QAQC\TPMechanical.QAQC.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="TPMechanical.Addin.addin" />
+  </ItemGroup>
+</Project>

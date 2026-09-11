@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>TP Mechanical Revit Tools</Name>
+    <Assembly>C:\Users\joshua.moore.TPMC\OneDrive - TPMechanical\Documents\Revit QAQC\TPMechanical.QAQC\TPMechanical.Addin\bin\Debug\net8.0-windows\TPMechanical.Addin.dll</Assembly>
+    <AddInId>8B31E411-3B84-4CFB-9A94-3A83072B9181</AddInId>
+    <FullClassName>TPMechanical.Addin.TPMechanicalApp</FullClassName>
+    <VendorId>TPME</VendorId>
+    <VendorDescription>TP Mechanical</VendorDescription>
+  </AddIn>
+</RevitAddIns>

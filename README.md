@@ -1,42 +1,19 @@
-# Project RAT
+# TP Mechanical Revit Tools
 
-**Revit App Tools for TP Mechanical**
+`TPMechanical.RevitTools.sln` is the company Revit 2026 add-in solution.
 
-Project RAT is TP Mechanical's private Revit 2026 add-in. It provides one organized ribbon for drawing QA/QC, fabrication hanger placement, layout-point workflows, and future field and coordination tools.
+- `TPMechanical.Addin` owns Revit startup and the TP Mechanical ribbon.
+- `TPMechanical.HangerPlacement` owns the working hanger command, WPF window,
+  rule/session models, fabrication discovery, placement logic, and button icon.
+- `TPMechanical.QAQC` remains available but is on hold.
 
-## Current tools
+All projects target `net8.0-windows` and x64. Revit references default to
+`C:\Program Files\Autodesk\Revit 2026`; a developer can override that path with the
+`RevitApiDirectory` MSBuild property.
 
-- **Drawing QA/QC** — foundation for automated drawing and model checks.
-- **Hanger Placement** — rule-based hanger selection, planning, validation, and placement for fabrication parts.
+The Addin project references the feature projects so its output folder contains the
+three assemblies Revit needs. The installed Revit manifest points only to
+`TPMechanical.Addin.dll` and `TPMechanical.Addin.TPMechanicalApp`.
 
-## Planned tools
-
-- Trimble and layout-point creation
-- Connector and system validation
-- Collision-aware hanger adjustment
-- Structural attachment workflows
-- Controlled release packaging for company deployment
-
-See [the roadmap](docs/ROADMAP.md) for the working feature list.
-
-## Development requirements
-
-- Visual Studio 2022
-- .NET 8 SDK
-- Autodesk Revit 2026
-- Access to `RevitAPI.dll` and `RevitAPIUI.dll`
-
-Open `TPMechanical.QAQC.slnx` in Visual Studio. Each developer should build and test against their own local Revit installation; generated `bin`, `obj`, and `.vs` files are intentionally excluded from Git.
-
-## Collaboration
-
-`main` is the tested version. Create a short-lived branch for each feature or repair, push it, and merge it through a pull request after review and Revit testing.
-
-Examples:
-
-- `feature/hanger-spacing`
-- `feature/layout-points`
-- `fix/ribbon-icon`
-
-Read [the collaboration guide](COLLABORATION.md) before making the first change.
-
+`TPMechanical.Shared` is intentionally deferred until two feature projects actually
+need the same code. That avoids creating an empty dependency and keeps ownership clear.

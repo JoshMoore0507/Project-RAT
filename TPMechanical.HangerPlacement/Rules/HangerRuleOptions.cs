@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Collections.Generic;
 
-namespace TPMechanical.QAQC
+namespace TPMechanical.HangerPlacement.Rules
 {
     public static class HangerRuleOptions
     {

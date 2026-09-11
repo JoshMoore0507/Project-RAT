@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <UseWPF>true</UseWPF>
+    <UseRevitApi>true</UseRevitApi>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\HangerPlacement32.png" />
+    <Resource Include="Resources\HangerPlacement32.png" />
+  </ItemGroup>
+</Project>

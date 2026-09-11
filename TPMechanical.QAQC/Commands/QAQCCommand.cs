@@ -5,7 +5,7 @@ using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
-namespace TPMechanical.QAQC
+namespace TPMechanical.QAQC.Commands
 {
     [Transaction(TransactionMode.Manual)]
     public class QAQCCommand : IExternalCommand

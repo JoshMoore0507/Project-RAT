@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPMechanical.Addin", "TPMechanical.Addin\TPMechanical.Addin.csproj", "{8AE96707-5718-4A81-9C3A-6BF91D5C0EB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPMechanical.HangerPlacement", "TPMechanical.HangerPlacement\TPMechanical.HangerPlacement.csproj", "{0F47990E-FB76-4160-916D-FA4B61466022}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPMechanical.QAQC", "TPMechanical.QAQC\TPMechanical.QAQC.csproj", "{30B25045-0321-4479-877D-7A55A5DBBC77}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8AE96707-5718-4A81-9C3A-6BF91D5C0EB6}.Debug|x64.ActiveCfg = Debug|x64
+		{8AE96707-5718-4A81-9C3A-6BF91D5C0EB6}.Debug|x64.Build.0 = Debug|x64
+		{8AE96707-5718-4A81-9C3A-6BF91D5C0EB6}.Release|x64.ActiveCfg = Release|x64
+		{8AE96707-5718-4A81-9C3A-6BF91D5C0EB6}.Release|x64.Build.0 = Release|x64
+		{0F47990E-FB76-4160-916D-FA4B61466022}.Debug|x64.ActiveCfg = Debug|x64
+		{0F47990E-FB76-4160-916D-FA4B61466022}.Debug|x64.Build.0 = Debug|x64
+		{0F47990E-FB76-4160-916D-FA4B61466022}.Release|x64.ActiveCfg = Release|x64
+		{0F47990E-FB76-4160-916D-FA4B61466022}.Release|x64.Build.0 = Release|x64
+		{30B25045-0321-4479-877D-7A55A5DBBC77}.Debug|x64.ActiveCfg = Debug|x64
+		{30B25045-0321-4479-877D-7A55A5DBBC77}.Debug|x64.Build.0 = Debug|x64
+		{30B25045-0321-4479-877D-7A55A5DBBC77}.Release|x64.ActiveCfg = Release|x64
+		{30B25045-0321-4479-877D-7A55A5DBBC77}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

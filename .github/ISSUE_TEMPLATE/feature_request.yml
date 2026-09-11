@@ -1,0 +1,26 @@
+name: Feature request
+description: Propose a new Project RAT ribbon tool or improvement.
+title: "[Feature] "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Revit workflow to improve
+      description: Explain the current manual process and who uses it.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Desired result
+      description: Describe what Project RAT should do.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Definition of done
+      description: List the results that would prove the tool works.
+
